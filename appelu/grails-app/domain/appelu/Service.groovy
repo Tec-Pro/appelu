@@ -3,7 +3,7 @@ package appelu
 
 import grails.rest.*
 
-@Resource(readOnly = false, formats = ['json', 'xml'])
+@Resource(uri = '/services', readOnly = false, formats = ['json', 'xml'])
 class Service {
 	String name
 	Long duration 

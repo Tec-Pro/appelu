@@ -12,4 +12,8 @@ class CustomerServiceDay {
 	Date closingTime 
 	Date closingTime2
 
+	static constraints = {
+		businessId blank: false
+	}
+
 }
