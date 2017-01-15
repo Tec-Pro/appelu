@@ -1,6 +1,6 @@
 ---
 grails:
-    profile: rest-api
+    profile: angular
     codegen:
         defaultPackage: appelu
     spring:

@@ -3,13 +3,6 @@ package appelu
 class UrlMappings {
 
     static mappings = {
-
-
-        "/businesses"(resources:"business")
-        "/services"(resources:"service")  
-        "/reserves"(resources:"reserve")
-
-
         delete "/$controller/$id(.$format)?"(action:"delete")
         get "/$controller(.$format)?"(action:"index")
         get "/$controller/$id(.$format)?"(action:"show")
@@ -17,11 +10,7 @@ class UrlMappings {
         put "/$controller/$id(.$format)?"(action:"update")
         patch "/$controller/$id(.$format)?"(action:"patch")
 
-
-        
-        
-
-        "/"(controller: 'application', action:'index')
+        "/"(view: '/index')
         "500"(view: '/error')
         "404"(view: '/notFound')
     }
