@@ -1,0 +1,137 @@
+{
+	"variables": [],
+	"info": {
+		"name": "appelu",
+		"_postman_id": "84490f24-89cb-b30e-e591-8b7bb37d8fe7",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear usuario",
+			"request": {
+				"url": "http://localhost:3000/api/v1/users",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "jjacinto@gamil.com",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "jacinto",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "role",
+							"value": "OWNER",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Login con pass",
+			"request": {
+				"url": "http://localhost:3000/api/v1/users/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "jjacinto@gamil.com",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "jacinto",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Login con token",
+			"request": {
+				"url": "http://localhost:3000/api/v1/businesses",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\": \"8acd99edc871d46a59414494a8f596d3\",\n\t\"business\": {\n\t\t\"name\": \"ALTA PELUQUERIA VIEJTIA\"\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Crear negocio",
+			"request": {
+				"url": "http://localhost:3000/api/v1/businesses",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\": \"799fdf0af948758a0cbf7e0b90080e54\",\n\t\"business\": {\n\t\t\"name\": \"ALTA PELUQUERIA VIEJTIA\"\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Crear day",
+			"request": {
+				"url": "http://localhost:3000/api/v1/businesses/1/days",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\": \"799fdf0af948758a0cbf7e0b90080e54\",\n\t\"customerServiceDay\": {\n\t\t\"day\": \"Lunes\",\n\t\t\"openingTime\": \"08:00:00\",\n\t\t\"closingTime\": \"18:00:00\"\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
