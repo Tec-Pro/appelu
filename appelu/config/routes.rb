@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       end 
 
        post "/users/login", to: "users#login"
-
+       post "/users/recovery" to: "users#recovery"
 		  
 		  get "/services", to: "services#indexAll"
 		  get "/myReserves", to: "users#reserves"
