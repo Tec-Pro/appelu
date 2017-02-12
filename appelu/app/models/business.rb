@@ -7,9 +7,11 @@ class Business < ActiveRecord::Base
 
   before_create :set_enable
 
+  STATUS_ENABLE = "enabled"
+  STATUS_DISABLE = "disabled"
 
   def set_enable
-  	self.enable = true
+  	self.status = STATUS_ENABLE
   end	
 end
 	

@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170203110916) do
+ActiveRecord::Schema.define(version: 20170212205755) do
 
   create_table "businesses", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.boolean  "enable"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "status"
   end
 
   add_index "businesses", ["user_id"], name: "index_businesses_on_user_id"
@@ -39,10 +39,12 @@ ActiveRecord::Schema.define(version: 20170203110916) do
   create_table "reserves", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "service_id"
-    t.boolean  "enable"
     t.string   "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "status"
   end
 
   add_index "reserves", ["service_id"], name: "index_reserves_on_service_id"
@@ -51,10 +53,10 @@ ActiveRecord::Schema.define(version: 20170203110916) do
   create_table "services", force: :cascade do |t|
     t.string   "name"
     t.integer  "duration"
-    t.boolean  "enable"
     t.integer  "business_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "status"
   end
 
   add_index "services", ["business_id"], name: "index_services_on_business_id"

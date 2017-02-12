@@ -2,9 +2,13 @@ class Service < ActiveRecord::Base
   belongs_to :business
   has_many :reserves
   
- 	before_create :set_enable
+  before_create :set_enable
 
-	def set_enable
-		self.enable = true
-	end	
+  STATUS_ENABLE = "enabled"
+  STATUS_DISABLE = "disabled"
+
+  def set_enable
+  	self.status = STATUS_ENABLE
+  end
+
 end

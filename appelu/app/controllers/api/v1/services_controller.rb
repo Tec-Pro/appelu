@@ -49,7 +49,7 @@ class Api::V1::ServicesController < ApplicationController
 	private
 
 	def service_params
-		params.require(:service).permit(:name,:duration,:enable) 
+		params.require(:service).permit(:name,:duration,:status)
 	end
 
 	def set_business
