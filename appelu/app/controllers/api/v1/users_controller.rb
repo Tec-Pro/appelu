@@ -27,7 +27,7 @@ class Api::V1::UsersController < ApplicationController
 
 	def update
 		@current_user.update(user_update_params)
-		render "api/v1/businesses/show"		
+		render "api/v1/users/show"		
 	end
 
 	def show		
@@ -77,7 +77,7 @@ end
 		end
 
 		def user_update_params
-			params.permit(:password,:phone,:role) 
+			params.permit(:password,:phone,:role,:enable) 
 		end
 
 end
