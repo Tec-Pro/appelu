@@ -1,1 +1,1 @@
-json.partial! "api/v1/resource", resource: @business, relations: ["services"]
+json.partial! "api/v1/resource", resource: @business, relations: ["services", "customerServiceDays"]

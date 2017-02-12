@@ -1,1 +1,1 @@
-json.partial! partial: "api/v1/resource", collection: @users, as: :resource
+json.array! @users, :id, :email, :role, :enable

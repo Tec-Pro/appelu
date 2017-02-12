@@ -76,7 +76,7 @@
 		{
 			"name": "Login con token",
 			"request": {
-				"url": "http://localhost:3000/api/v1/businesses",
+				"url": "http://localhost:3000/api/v1/users/login",
 				"method": "POST",
 				"header": [
 					{
@@ -87,7 +87,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"token\": \"8acd99edc871d46a59414494a8f596d3\",\n\t\"business\": {\n\t\t\"name\": \"ALTA PELUQUERIA VIEJTIA\"\n\t}\n}"
+					"raw": "{\n\t\"token\": \"8acd99edc871d46a59414494a8f596d3\"\n}"
 				},
 				"description": ""
 			},
@@ -128,6 +128,82 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n\t\"token\": \"799fdf0af948758a0cbf7e0b90080e54\",\n\t\"customerServiceDay\": {\n\t\t\"day\": \"Lunes\",\n\t\t\"openingTime\": \"08:00:00\",\n\t\t\"closingTime\": \"18:00:00\"\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Edit user",
+			"request": {
+				"url": "http://localhost:3000/api/v1/users",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"enable\": false,\n  \"token\": \"8cfe2a349088bbffeb426d5a62136f17\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get users",
+			"request": {
+				"url": "http://localhost:3000/api/v1/users",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "token",
+						"value": "8acd99edc871d46a59414494a8f596d3",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\": \"8acd99edc871d46a59414494a8f596d3\"\n}{\n\t\"token\": \"8acd99edc871d46a59414494a8f596d3\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get user",
+			"request": {
+				"url": "http://localhost:3000/api/v1/users/3",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"url": "http://localhost:3000/api/v1/users/3",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\": \"8acd99edc871d46a59414494a8f596d3\"\n}"
 				},
 				"description": ""
 			},

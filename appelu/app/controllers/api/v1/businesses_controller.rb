@@ -32,7 +32,7 @@ class Api::V1::BusinessesController < ApplicationController
 
 	def destroy		
 		@business.destroy
-		render json: { message: "Fue eliminada la encuesta indicada"  }		
+		render json: { message: "Negocio eliminado"  }		
 	end
 
 	private

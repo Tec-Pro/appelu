@@ -1,3 +1,6 @@
-json.(@user,:id,:email,:phone,:role)
+json.ignore_nil! false
+json.(@user,:id,:email,:role)
 
-json.(@token,:token)
+if @token.present? 
+	json.(@token,:token)
+end

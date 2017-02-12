@@ -1,8 +1,8 @@
 require 'bcrypt'
 
 class Api::V1::UsersController < ApplicationController
-	before_action :authenticate, only: [:update]
-	before_action :set_user, only: [ :show,:update]
+	before_action :authenticate, only: [:update, :destroy]
+	before_action :set_user, only: [:show]
 	# POST /users
 	def create
 		#params = { auth:{ provider: 'facebook', uid:'12adsashd71' } }
@@ -33,6 +33,20 @@ class Api::V1::UsersController < ApplicationController
 	def show		
 	end
 
+	def destroy
+		@user = User.find(params[:id])
+		if @current_user.role == "ADMIN" or @current_user == @user
+			@user.enable = false
+			@user.save!
+			render json: { message: "Usuario eliminado"  }
+		else
+			error!("No tiene permisos para realizar esta accion", :unauthorized)
+		end		
+	end	
+
+
+	#TODO - Only accessible for admin users
+	#TODO - ¿Mostrar solo los usuarios activos?
 	def index
 		@users = User.all
 	end
@@ -78,6 +92,10 @@ end
 
 		def user_update_params
 			params.permit(:password,:phone,:role,:enable) 
+		end
+
+		def set_user
+			@user = User.find(params[:id])
 		end
 
 end
