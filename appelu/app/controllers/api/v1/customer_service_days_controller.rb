@@ -45,7 +45,7 @@ class Api::V1::CustomerServiceDaysController < ApplicationController
 	private
 
 	def customerServiceDay_params
-		params.require(:customerServiceDay).permit(:day,:openingTime,:closingTime,:openingTime2,:closingTime2) 
+		params.permit(:day,:openingTime,:closingTime,:openingTime2,:closingTime2) 
 	end
 
 

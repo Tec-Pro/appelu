@@ -44,7 +44,7 @@ class Api::V1::BusinessesController < ApplicationController
 	end
 
 	def business_params
-		params.require(:business).permit(:name,:enable)
+		params.permit(:name,:enable)
 	end
 
 end

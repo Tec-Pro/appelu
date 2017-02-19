@@ -12,17 +12,18 @@ class Api::V1::UsersController < ApplicationController
 			@user.save!
 			@token = @user.tokens.create
 
+			response.headers["X-AUTH-TOKEN"] = @token.token
 			render "api/v1/users/show"
 		elsif params[:auth]
 			@user = User.from_omniauth(params[:auth])
 			@token = @user.tokens.create
 
+			response.headers["X-AUTH-TOKEN"] = @token.token
 			render "api/v1/users/show"	
 		
 		else
 			render json: { error: "No encontramos parámetros" }
 		end	
-
 	end
 
 	def update
@@ -48,18 +49,26 @@ class Api::V1::UsersController < ApplicationController
 	#TODO - Only accessible for admin users
 	#TODO - ¿Mostrar solo los usuarios activos?
 	def index
-		@users = User.all
+		if @current_user.role = "ADMIN"
+			@users = User.where(enable: true)
+		else
+			error!("No tiene permisos para realizar esta accion", :unauthorized)
+		end	
 	end
 
 
 def login
-	if params[:token]	
+	if !request.headers["X-AUTH-TOKEN"].nil?
 		authenticate
 	else		
 		@user = User.find_by_email(params[:email])
 		if @user.password == params[:password]
 			@current_user = @user
-			@token = @user.tokens.create #mejorar
+			@token = Token.where(user_id: @user.id).first
+			if !@token.nil? or !@token.is_valid?
+				@user.tokens.create
+			end	
+			response.headers["X-AUTH-TOKEN"] = @token.token
 	  	else
 			error!("Tu contrseña es inválida", :unauthorized)
 	  	end

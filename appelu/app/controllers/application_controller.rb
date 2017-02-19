@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery with: :exception
 
 def authenticate
-  	token_str = params[:token]
+  	token_str = request.headers["X-AUTH-TOKEN"]
   	@token = Token.find_by(token: token_str)
     
   	if @token.nil? or not @token.is_valid? 

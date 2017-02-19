@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       end 
 
        put "/users", to: "users#update"
-       post "/users/login", to: "users#login"
+       post "/login", to: "users#login"
        post "/users/recovery", to: "users#recovery"
 		    
 
