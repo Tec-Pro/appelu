@@ -1,0 +1,238 @@
+{
+	"variables": [],
+	"info": {
+		"name": "appelu",
+		"_postman_id": "0f97aa59-21a9-7a6b-f3c2-91b4d27fb21d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear usuario",
+			"request": {
+				"url": "http://localhost:3000/api/v1/users",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "jjacinto@gamil.com",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "jacinto",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "role",
+							"value": "OWNER",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Login con pass",
+			"request": {
+				"url": "http://localhost:3000/api/v1/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "jjacinto@gamil.com",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "jacinto",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Login con token",
+			"request": {
+				"url": "http://localhost:3000/api/v1/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "7d1c1c5902a62e49226f998eec3a2f6e",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Crear negocio",
+			"request": {
+				"url": "http://localhost:3000/api/v1/businesses",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "58ccc4da9da5bdcc18be5465fa24d404",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\n\t\n\t\"name\": \"ALTA PELUQUERIA VIEJTIA\"\n\t\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Crear day",
+			"request": {
+				"url": "http://localhost:3000/api/v1/businesses/1/days",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "58ccc4da9da5bdcc18be5465fa24d404",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"day\": \"Lunes\",\n\t\t\"openingTime\": \"08:00:00\",\n\t\t\"closingTime\": \"18:00:00\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Edit user",
+			"request": {
+				"url": "http://localhost:3000/api/v1/users",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "58ccc4da9da5bdcc18be5465fa24d404",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"enable\": false\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get users",
+			"request": {
+				"url": "http://localhost:3000/api/v1/users",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "58ccc4da9da5bdcc18be5465fa24d404",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\": \"8acd99edc871d46a59414494a8f596d3\"\n}{\n\t\"token\": \"8acd99edc871d46a59414494a8f596d3\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get user",
+			"request": {
+				"url": "http://localhost:3000/api/v1/users/3",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"url": "http://localhost:3000/api/v1/users/3",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "58ccc4da9da5bdcc18be5465fa24d404",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\": \"8acd99edc871d46a59414494a8f596d3\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
