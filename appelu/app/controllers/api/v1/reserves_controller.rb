@@ -6,7 +6,7 @@ class Api::V1::ReservesController < ApplicationController
 				
 	#POST /reserves
 	def create
-		@reserve = reserve.new(reserve_params)
+		@reserve = Reserve.new(reserve_params)
 		if @reserve.save
 			render template: "api/v1/reserves/show"
 		else
@@ -32,7 +32,7 @@ class Api::V1::ReservesController < ApplicationController
 	private
 
 	def reserve_params
-		params.require(:reserve).permit(:comment,:start_time,:end_time,:enable,:user_id,:service_id)
+		params.require(:reserve).permit(:comment,:start_time,:end_time,:status,:user_id,:service_id)
 	end
 
 	def set_reserve

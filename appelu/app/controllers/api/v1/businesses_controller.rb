@@ -6,7 +6,11 @@ class Api::V1::BusinessesController < ApplicationController
 	
 
 	def index
-		@business = Business.all
+		if params[:user_id]
+			@businesses = Business.where("user_id = #{params[:user_id]}")
+		else
+			render json: { error: "no encontramos parametros"  }	
+		end
 	end
 
 	def show		
@@ -36,8 +40,6 @@ class Api::V1::BusinessesController < ApplicationController
 	end
 
 	private
-
-	
 
 	def set_business
 		@business = Business.find(params[:id])
