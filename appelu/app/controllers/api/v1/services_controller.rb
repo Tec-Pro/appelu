@@ -23,8 +23,12 @@ class Api::V1::ServicesController < ApplicationController
 	#POST /businesses/1/services
 	def create
 		@service = @business.services.new(service_params)
+
 		if @service.save
+
+			create_reserves()
 			render template: "api/v1/services/show"
+
 		else
 			render json: { error: @service.errors }, status: :unprocessable_entity
 		end
@@ -47,6 +51,39 @@ class Api::V1::ServicesController < ApplicationController
 
 
 	private
+
+	def create_reserves()
+
+		customerServiceDays = @business.customerServiceDays.to_a
+		for i in 0..30
+			customerServiceDays.each{ |x|
+
+				if x.day == (@service.created_at+i.days).strftime("%A").upcase
+
+					openingTime = x.openingTime
+
+					while openingTime < x.closingTime do
+
+						reserveStartTime = "#{(@service.created_at+i.days).strftime("%Y%m%d")}T#{openingTime.strftime("%H%M%S")}+0000"
+						
+						d = DateTime.iso8601(reserveStartTime)
+						
+						@reserve = Reserve.create(	comment: "reservita",
+										user_id: nil,
+										service_id: @service.id,
+										start_time: d,
+										end_time: d + @service.duration.minutes )
+						if @reserve.save
+							puts "turno. comienza: #{reserveStartTime}, dia: #{x.day}"
+						end 
+						openingTime = openingTime + @service.duration.minutes
+					end
+
+				end
+
+			}
+		end
+	end
 
 	def service_params
 		params.permit(:name,:duration,:enable) 

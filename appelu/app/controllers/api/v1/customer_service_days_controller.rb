@@ -18,7 +18,7 @@ class Api::V1::CustomerServiceDaysController < ApplicationController
 
 	#POST /businesses/1/customerServiceDays
 	def create
-		if !CustomerServiceDay::DAYS_OF_THE_WEEK.include? params[:customerServiceDay][:day]
+		if !CustomerServiceDay::DAYS_OF_THE_WEEK.include? params[:day]
 			render json: { error: "incorrect day"}, status: :unprocessable_entity
 			return
 		end
