@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170212205755) do
+ActiveRecord::Schema.define(version: 20170226220509) do
 
   create_table "businesses", force: :cascade do |t|
     t.string   "name"
@@ -36,20 +36,6 @@ ActiveRecord::Schema.define(version: 20170212205755) do
 
   add_index "customer_service_days", ["business_id"], name: "index_customer_service_days_on_business_id"
 
-  create_table "reserves", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "service_id"
-    t.string   "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.string   "status"
-  end
-
-  add_index "reserves", ["service_id"], name: "index_reserves_on_service_id"
-  add_index "reserves", ["user_id"], name: "index_reserves_on_user_id"
-
   create_table "services", force: :cascade do |t|
     t.string   "name"
     t.integer  "duration"
@@ -60,6 +46,20 @@ ActiveRecord::Schema.define(version: 20170212205755) do
   end
 
   add_index "services", ["business_id"], name: "index_services_on_business_id"
+
+  create_table "shifts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "service_id"
+    t.string   "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "status"
+  end
+
+  add_index "shifts", ["service_id"], name: "index_shifts_on_service_id"
+  add_index "shifts", ["user_id"], name: "index_shifts_on_user_id"
 
   create_table "tokens", force: :cascade do |t|
     t.datetime "expires_at"

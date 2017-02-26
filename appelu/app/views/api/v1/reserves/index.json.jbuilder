@@ -1,1 +1,0 @@
-json.partial! partial: "api/v1/resource", collection: @reserves, as: :resource

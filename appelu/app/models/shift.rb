@@ -1,4 +1,4 @@
-class Reserve < ActiveRecord::Base
+class Shift < ActiveRecord::Base
   belongs_to :user
   belongs_to :service
 
@@ -7,6 +7,7 @@ class Reserve < ActiveRecord::Base
   STATUS_EXPIRED = "expired"
   STATUS_ACTIVE = "active"
   STATUS_ERROR = "error"
+  STATUS_RESERVED = "reserved"
 
   def set_active
   	self.status = STATUS_ACTIVE

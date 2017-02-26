@@ -1,6 +1,6 @@
 class Service < ActiveRecord::Base
   belongs_to :business
-  has_many :reserves
+  has_many :shifts
   
   before_create :set_enable
 

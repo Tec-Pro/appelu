@@ -26,7 +26,7 @@ class Api::V1::ServicesController < ApplicationController
 
 		if @service.save
 
-			create_reserves()
+			create_shifts()
 			render template: "api/v1/services/show"
 
 		else
@@ -52,7 +52,7 @@ class Api::V1::ServicesController < ApplicationController
 
 	private
 
-	def create_reserves()
+	def create_shifts()
 
 		customerServiceDays = @business.customerServiceDays.to_a
 		for i in 0..30
@@ -64,17 +64,17 @@ class Api::V1::ServicesController < ApplicationController
 
 					while openingTime < x.closingTime do
 
-						reserveStartTime = "#{(@service.created_at+i.days).strftime("%Y%m%d")}T#{openingTime.strftime("%H%M%S")}+0000"
+						shiftStartTime = "#{(@service.created_at+i.days).strftime("%Y%m%d")}T#{openingTime.strftime("%H%M%S")}+0000"
 						
-						d = DateTime.iso8601(reserveStartTime)
+						d = DateTime.iso8601(shiftStartTime)
 						
-						@reserve = Reserve.create(	comment: "reservita",
+						@shift = Shift.create(	comment:"",
 										user_id: nil,
 										service_id: @service.id,
 										start_time: d,
 										end_time: d + @service.duration.minutes )
-						if @reserve.save
-							puts "turno. comienza: #{reserveStartTime}, dia: #{x.day}"
+						if @shift.save
+							puts "turno. comienza: #{shiftStartTime}, dia: #{x.day}"
 						end 
 						openingTime = openingTime + @service.duration.minutes
 					end

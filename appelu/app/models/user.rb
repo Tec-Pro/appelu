@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 	
 	has_many :tokens
 	has_many :businesses
-	has_many :reserves
+	has_many :shifts
 
 
 	before_create :set_enable

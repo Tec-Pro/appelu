@@ -76,8 +76,8 @@ def login
 	render "api/v1/users/show"  	
 end
 
-def reserves
-	@current_user.reserves
+def shifts
+	@current_user.shifts
 end
 
 def recovery
