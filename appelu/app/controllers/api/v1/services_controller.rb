@@ -79,6 +79,25 @@ class Api::V1::ServicesController < ApplicationController
 						openingTime = openingTime + @service.duration.minutes
 					end
 
+					openingTime2 = x.openingTime2
+
+					while openingTime2 < x.closingTime2 do
+
+						shiftStartTime = "#{(@service.created_at+i.days).strftime("%Y%m%d")}T#{openingTime2.strftime("%H%M%S")}+0000"
+						
+						d = DateTime.iso8601(shiftStartTime)
+						
+						@shift = Shift.create(	comment:"",
+										user_id: nil,
+										service_id: @service.id,
+										start_time: d,
+										end_time: d + @service.duration.minutes )
+						if @shift.save
+							puts "turno. comienza: #{shiftStartTime}, dia: #{x.day}"
+						end 
+						openingTime2 = openingTime2 + @service.duration.minutes
+					end
+
 				end
 
 			}
