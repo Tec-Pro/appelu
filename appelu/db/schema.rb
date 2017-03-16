@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20170226220509) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "businesses", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20170226220509) do
     t.string   "status"
   end
 
-  add_index "businesses", ["user_id"], name: "index_businesses_on_user_id"
+  add_index "businesses", ["user_id"], name: "index_businesses_on_user_id", using: :btree
 
   create_table "customer_service_days", force: :cascade do |t|
     t.integer  "business_id"
@@ -34,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170226220509) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "customer_service_days", ["business_id"], name: "index_customer_service_days_on_business_id"
+  add_index "customer_service_days", ["business_id"], name: "index_customer_service_days_on_business_id", using: :btree
 
   create_table "services", force: :cascade do |t|
     t.string   "name"
@@ -45,7 +48,7 @@ ActiveRecord::Schema.define(version: 20170226220509) do
     t.string   "status"
   end
 
-  add_index "services", ["business_id"], name: "index_services_on_business_id"
+  add_index "services", ["business_id"], name: "index_services_on_business_id", using: :btree
 
   create_table "shifts", force: :cascade do |t|
     t.integer  "user_id"
@@ -58,8 +61,8 @@ ActiveRecord::Schema.define(version: 20170226220509) do
     t.string   "status"
   end
 
-  add_index "shifts", ["service_id"], name: "index_shifts_on_service_id"
-  add_index "shifts", ["user_id"], name: "index_shifts_on_user_id"
+  add_index "shifts", ["service_id"], name: "index_shifts_on_service_id", using: :btree
+  add_index "shifts", ["user_id"], name: "index_shifts_on_user_id", using: :btree
 
   create_table "tokens", force: :cascade do |t|
     t.datetime "expires_at"
@@ -69,7 +72,7 @@ ActiveRecord::Schema.define(version: 20170226220509) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "tokens", ["user_id"], name: "index_tokens_on_user_id"
+  add_index "tokens", ["user_id"], name: "index_tokens_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
@@ -84,4 +87,10 @@ ActiveRecord::Schema.define(version: 20170226220509) do
     t.datetime "updated_at",    null: false
   end
 
+  add_foreign_key "businesses", "users"
+  add_foreign_key "customer_service_days", "businesses"
+  add_foreign_key "services", "businesses"
+  add_foreign_key "shifts", "services"
+  add_foreign_key "shifts", "users"
+  add_foreign_key "tokens", "users"
 end
