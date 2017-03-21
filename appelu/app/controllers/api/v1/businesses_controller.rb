@@ -13,6 +13,7 @@ class Api::V1::BusinessesController < ApplicationController
 		end
 	end
 
+
 	def show		
 	end
 
